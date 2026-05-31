@@ -1176,7 +1176,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 /* ===== TAXI PAGE ===== */
 .taxi-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 14px;
 }
@@ -1186,9 +1186,10 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   border-radius: var(--radius);
   padding: 16px 14px;
   transition: all var(--transition);
+  text-align: center;
 }
 .taxi-feature:hover { border-color: rgba(232,93,4,0.3); transform: translateY(-2px); }
-.taxi-feature .service-icon { width: 36px; height: 36px; margin-bottom: 8px; }
+.taxi-feature .service-icon { width: 36px; height: 36px; margin: 0 auto 8px; }
 .taxi-feature .service-icon svg { width: 18px; height: 18px; }
 .taxi-feature h3 { font-size: 0.875rem; font-weight: 700; color: var(--white); margin: 8px 0 6px; }
 .taxi-feature p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
