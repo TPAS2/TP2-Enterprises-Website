@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <!-- Page turn indicator dots -->
+  <div class="page-indicator" id="pageIndicator"></div>
+
   <!-- NAV -->
   <header class="nav-wrapper" id="navbar">
     <nav class="nav container">
@@ -29,7 +32,12 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- BOOK WRAPPER -->
+  <div id="book">
+
+  <!-- PAGE 1: HERO -->
+  <div class="page" id="page-0">
+  <div class="page-inner">
   <section class="hero" id="home">
     <div class="hero-bg">
       <div class="hero-grid"></div>
@@ -63,7 +71,11 @@
     </div>
   </section>
 
-  <!-- SERVICES -->
+  </div></div></div><!-- /page-inner /page /page-0 -->
+
+  <!-- PAGE 2: SERVICES -->
+  <div class="page" id="page-1">
+  <div class="page-inner">
   <section class="services section" id="services">
     <div class="container">
       <div class="section-header">
@@ -101,7 +113,11 @@
     </div>
   </section>
 
-  <!-- INVENTORY HIGHLIGHTS -->
+  </div></div></div><!-- /page-inner /page /page-1 -->
+
+  <!-- PAGE 3: INVENTORY -->
+  <div class="page" id="page-2">
+  <div class="page-inner">
   <section class="inventory section" id="inventory">
     <div class="container">
       <div class="section-header">
@@ -172,7 +188,11 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  </div></div></div><!-- /page-inner /page /page-2 -->
+
+  <!-- PAGE 4: ABOUT -->
+  <div class="page" id="page-3">
+  <div class="page-inner">
   <section class="about section" id="about">
     <div class="container about-inner">
       <div class="about-visual">
@@ -229,7 +249,11 @@
     </div>
   </section>
 
-  <!-- STATS -->
+  </div></div></div><!-- /page-inner /page /page-3 -->
+
+  <!-- PAGE 5: STATS + TESTIMONIALS -->
+  <div class="page" id="page-4">
+  <div class="page-inner">
   <section class="stats section" id="stats">
     <div class="container">
       <div class="section-header">
@@ -261,7 +285,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS (same page as stats) -->
   <section class="testimonials section" id="testimonials">
     <div class="container">
       <div class="section-header">
@@ -306,6 +330,11 @@
     </div>
   </section>
 
+  </div></div></div><!-- /page-inner /page /page-4 -->
+
+  <!-- PAGE 6: CONTACT + FOOTER -->
+  <div class="page" id="page-5">
+  <div class="page-inner">
   <!-- CTA STRIP -->
   <section class="cta-strip">
     <div class="container cta-strip-inner">
@@ -444,6 +473,10 @@
       </div>
     </div>
   </footer>
+
+  </div></div></div><!-- /page-inner /page /page-5 -->
+
+  </div><!-- /book -->
 
   <script src="script.js"></script>
 </body>
