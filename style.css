@@ -1004,7 +1004,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 40px;
-  align-items: start;
+  align-items: center;
 }
 .contact-info .section-title { text-align: left; font-size: clamp(1.2rem, 2.5vw, 1.7rem); margin-bottom: 8px; }
 .contact-info .section-tag { margin-bottom: 8px; }
