@@ -68,6 +68,7 @@ const pages = document.querySelectorAll('.page');
 const indicator = document.getElementById('pageIndicator');
 let currentPage = 0;
 let isAnimating = false;
+let lastScrollTime = 0;
 
 pages.forEach((_, i) => {
   const dot = document.createElement('button');
@@ -84,7 +85,10 @@ function updateDots(index) {
 }
 
 function goToPage(index) {
-  if (isAnimating || index < 0 || index >= pages.length) return;
+  if (index < 0 || index >= pages.length) return;
+  const now = Date.now();
+  if (now - lastScrollTime < 900) return;
+  lastScrollTime = now;
   isAnimating = true;
   currentPage = index;
   updateDots(index);
@@ -94,13 +98,12 @@ function goToPage(index) {
     isAnimating = false;
     revealCardsInPage(pages[index]);
     if (pages[index].querySelector('.stat-number')) triggerCounters();
-  }, 400);
+  }, 800);
 }
 
 // Wheel handler — one tick = one page
 window.addEventListener('wheel', (e) => {
   e.preventDefault();
-  if (isAnimating) return;
   if (e.deltaY > 0) goToPage(currentPage + 1);
   else if (e.deltaY < 0) goToPage(currentPage - 1);
 }, { passive: false });
