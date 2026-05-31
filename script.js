@@ -1,5 +1,24 @@
 'use strict';
 
+// ===== HERO PARTICLES =====
+const particleContainer = document.getElementById('heroParticles');
+if (particleContainer) {
+  for (let i = 0; i < 30; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${Math.random() * 3 + 1}px;
+      height: ${Math.random() * 3 + 1}px;
+      animation-duration: ${Math.random() * 10 + 8}s;
+      animation-delay: ${Math.random() * 10}s;
+      opacity: 0;
+      background: ${Math.random() > 0.5 ? '#ff7d3b' : '#ffe03b'};
+    `;
+    particleContainer.appendChild(p);
+  }
+}
+
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
