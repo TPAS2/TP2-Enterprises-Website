@@ -541,22 +541,26 @@ input, select, textarea { font-family: inherit; }
   position: absolute;
   bottom: 100px;
   right: 40px;
-  background: linear-gradient(135deg, var(--brand-light), var(--brand));
-  color: var(--white);
+  background: rgba(232,93,4,0.15);
+  color: rgba(255,125,59,0.7);
+  border: 1px solid rgba(232,93,4,0.2);
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 0.9rem;
-  padding: 12px 18px;
+  padding: 10px 16px;
   border-radius: 100px;
-  box-shadow: 0 4px 20px rgba(232,93,4,0.4);
+  backdrop-filter: blur(8px);
   z-index: 10;
   animation: iisFloat 3s ease-in-out infinite;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.3s;
   letter-spacing: 0.05em;
 }
 .floating-iis:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 8px 32px rgba(232,93,4,0.6);
+  background: rgba(232,93,4,0.3);
+  color: var(--white);
+  border-color: rgba(232,93,4,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(232,93,4,0.3);
 }
 @keyframes iisFloat {
   0%, 100% { transform: translateY(0); }
