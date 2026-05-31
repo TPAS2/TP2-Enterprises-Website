@@ -2,9 +2,8 @@
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
-const book = document.getElementById('book');
-book.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', book.scrollTop > 40);
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
 // ===== MOBILE NAV =====
@@ -65,7 +64,7 @@ const pageObserver = new IntersectionObserver((entries) => {
       if (entry.target.id === 'page-4') triggerCounters();
     }
   });
-}, { threshold: 0.5, root: book });
+}, { threshold: 0.5 });
 
 pages.forEach(page => pageObserver.observe(page));
 

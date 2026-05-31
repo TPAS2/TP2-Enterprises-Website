@@ -19,27 +19,26 @@
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 
-html { font-size: 16px; }
+html {
+  font-size: 16px;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar { display: none; }
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--dark);
   color: var(--text);
   line-height: 1.6;
-  overflow: hidden;
-  height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ===== BOOK / PAGE-TURN SCROLL ===== */
 #book {
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  perspective: 1200px;
-  scrollbar-width: none;
+  /* no special scroll needed — html handles it */
 }
-#book::-webkit-scrollbar { display: none; }
 
 .page {
   height: 100vh;
@@ -115,6 +114,7 @@ body {
 .page-inner {
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
