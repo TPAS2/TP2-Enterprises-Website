@@ -781,7 +781,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .inv-name { display: block; font-size: 0.9rem; font-weight: 600; color: var(--white); }
 .inv-struck { text-decoration: line-through; color: var(--text-muted); }
 .inv-meta { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
-.inv-price { font-size: 0.95rem; font-weight: 700; color: var(--brand-light); white-space: nowrap; }
+.inv-price { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--brand-light); white-space: nowrap; letter-spacing: 0.02em; }
 .inv-price-sold { color: var(--text-muted); font-weight: 500; }
 .inv-arrow { font-size: 1.1rem; color: var(--text-muted); }
 
