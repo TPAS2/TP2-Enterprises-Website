@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iis 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #0d0008;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Floating hearts */
+    .hearts { position: fixed; inset: 0; pointer-events: none; }
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 1.5rem;
+      animation: heartRise linear infinite;
+      opacity: 0;
+    }
+    @keyframes heartRise {
+      0%   { transform: translateY(0) scale(0.6) rotate(-10deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-110vh) scale(1.2) rotate(10deg); opacity: 0; }
+    }
+
+    /* Glows */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    .glow-1 { width: 500px; height: 500px; background: rgba(255,80,150,0.18); top: -100px; left: -100px; }
+    .glow-2 { width: 400px; height: 400px; background: rgba(255,40,120,0.12); bottom: -80px; right: -80px; }
+
+    /* Main content */
+    .content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .emoji-big {
+      font-size: 5rem;
+      display: block;
+      animation: emojiBounce 1.2s ease-in-out infinite;
+      margin-bottom: 24px;
+    }
+    @keyframes emojiBounce {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50%       { transform: scale(1.15) translateY(-12px); }
+    }
+
+    .title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      animation: titleReveal 1s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    .title span {
+      background: linear-gradient(135deg, #ff80c0, #ff2d78, #ff80c0);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmerText 3s linear infinite;
+    }
+    @keyframes shimmerText {
+      0%   { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+    @keyframes titleReveal {
+      from { opacity: 0; transform: translateY(40px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .sub {
+      margin-top: 16px;
+      font-size: 1.1rem;
+      color: rgba(255,150,200,0.7);
+      animation: fadeIn 1s 0.4s ease both;
+      letter-spacing: 0.05em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Pulse ring */
+    .pulse-ring {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 320px; height: 320px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,80,150,0.3);
+      animation: pulseRing 2.5s ease-out infinite;
+      pointer-events: none;
+    }
+    .pulse-ring:nth-child(2) { animation-delay: 0.8s; }
+    .pulse-ring:nth-child(3) { animation-delay: 1.6s; }
+    @keyframes pulseRing {
+      0%   { transform: translate(-50%,-50%) scale(0.5); opacity: 0.8; }
+      100% { transform: translate(-50%,-50%) scale(2);   opacity: 0; }
+    }
+
+    /* Return button */
+    .return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #ff80c0, #ff2d78);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(255,45,120,0.4);
+      animation: fadeIn 1s 0.7s ease both;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .return-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(255,45,120,0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="content">
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <div class="pulse-ring"></div>
+    <span class="emoji-big">💕</span>
+    <h1 class="title">I <span>Love You</span></h1>
+    <p class="sub">always & forever ✨</p>
+    <a href="index.html" class="return-btn">← Return</a>
+  </div>
+
+  <script>
+    // Spawn floating hearts
+    const heartsEl = document.getElementById('hearts');
+    const emojis = ['💕','💗','💖','💝','💓','🌸','✨','💞'];
+    for (let i = 0; i < 25; i++) {
+      const h = document.createElement('span');
+      h.className = 'heart';
+      h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      h.style.cssText = `
+        left: ${Math.random() * 100}%;
+        font-size: ${Math.random() * 1.5 + 0.8}rem;
+        animation-duration: ${Math.random() * 8 + 6}s;
+        animation-delay: ${Math.random() * 8}s;
+      `;
+      heartsEl.appendChild(h);
+    }
+  </script>
+</body>
+</html>
