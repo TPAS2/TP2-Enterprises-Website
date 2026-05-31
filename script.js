@@ -102,6 +102,45 @@ function triggerCounters() {
   });
 }
 
+// ===== CAR SLIDER =====
+const sliderTrack = document.getElementById('sliderTrack');
+const sliderPrev = document.getElementById('sliderPrev');
+const sliderNext = document.getElementById('sliderNext');
+const sliderDotsEl = document.getElementById('sliderDots');
+
+if (sliderTrack) {
+  const cards = sliderTrack.querySelectorAll('.car-card');
+  const total = cards.length;
+  let current = 0;
+
+  // Create dots
+  cards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goSlide(i));
+    sliderDotsEl.appendChild(dot);
+  });
+
+  function goSlide(index) {
+    current = (index + total) % total;
+    const cardWidth = cards[0].offsetWidth + 24; // width + gap
+    sliderTrack.style.transform = `translateX(-${current * cardWidth}px)`;
+    sliderTrack.style.transition = 'transform 0.4s cubic-bezier(0.4,0,0.2,1)';
+    sliderDotsEl.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  sliderPrev.addEventListener('click', () => goSlide(current - 1));
+  sliderNext.addEventListener('click', () => goSlide(current + 1));
+
+  // Touch/swipe support
+  let startX = 0;
+  sliderTrack.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  sliderTrack.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goSlide(diff > 0 ? current + 1 : current - 1);
+  });
+}
+
 // ===== CONTACT FORM =====
 const form = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
