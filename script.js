@@ -50,28 +50,24 @@ if (iisEl) {
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
 
 // ===== MOBILE NAV =====
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
-  document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
 });
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('open');
-    document.body.style.overflow = '';
   });
 });
 
-// ===== PAGE-TURN DOTS =====
+// ===== JS PAGE SNAPPING =====
 const pages = document.querySelectorAll('.page');
 const indicator = document.getElementById('pageIndicator');
 let currentPage = 0;
+let isAnimating = false;
 
 pages.forEach((_, i) => {
   const dot = document.createElement('button');
@@ -88,33 +84,48 @@ function updateDots(index) {
 }
 
 function goToPage(index) {
+  if (isAnimating || index < 0 || index >= pages.length) return;
+  isAnimating = true;
+  currentPage = index;
+  updateDots(index);
+  navbar.classList.toggle('scrolled', index > 0);
   pages[index].scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    isAnimating = false;
+    revealCardsInPage(pages[index]);
+    if (pages[index].querySelector('.stat-number')) triggerCounters();
+  }, 400);
 }
 
-// ===== PAGE TURN ANIMATION on scroll snap =====
-const pageObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-      const index = Array.from(pages).indexOf(entry.target);
-      currentPage = index;
-      updateDots(index);
-    }
-  });
-}, { threshold: 0.5 });
+// Wheel handler — one tick = one page
+window.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (isAnimating) return;
+  if (e.deltaY > 0) goToPage(currentPage + 1);
+  else if (e.deltaY < 0) goToPage(currentPage - 1);
+}, { passive: false });
 
-pages.forEach(page => pageObserver.observe(page));
+// Touch handler
+let touchStartY = 0;
+window.addEventListener('touchstart', (e) => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+window.addEventListener('touchend', (e) => {
+  if (isAnimating) return;
+  const diff = touchStartY - e.changedTouches[0].clientY;
+  if (Math.abs(diff) > 40) {
+    if (diff > 0) goToPage(currentPage + 1);
+    else goToPage(currentPage - 1);
+  }
+}, { passive: true });
 
-// ===== SERVICE CARD FADE-IN =====
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const delay = entry.target.dataset.delay || 0;
-      setTimeout(() => entry.target.classList.add('visible'), parseInt(delay));
-      cardObserver.unobserve(entry.target);
-    }
+// ===== SERVICE CARD FADE-IN (triggered on page change) =====
+function revealCardsInPage(pageEl) {
+  pageEl.querySelectorAll('.service-card:not(.visible)').forEach((card, i) => {
+    const delay = card.dataset.delay || (i * 80);
+    setTimeout(() => card.classList.add('visible'), parseInt(delay));
   });
-}, { threshold: 0.15 });
-document.querySelectorAll('.service-card').forEach(card => cardObserver.observe(card));
+}
 
 // ===== STAT COUNTERS =====
 let countersTriggered = false;
@@ -137,6 +148,9 @@ function triggerCounters() {
     animateCounter(el, parseInt(el.dataset.target, 10));
   });
 }
+
+// Reveal cards on initial page
+revealCardsInPage(pages[0]);
 
 // ===== CAR SLIDER =====
 const sliderTrack = document.getElementById('sliderTrack');
@@ -199,13 +213,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
     const id = anchor.getAttribute('href').slice(1);
     if (!id) return;
-    // find which page contains this id
     const target = document.getElementById(id);
     if (!target) return;
     e.preventDefault();
     const page = target.closest('.page');
     if (page) {
-      page.scrollIntoView({ behavior: 'smooth' });
+      const idx = Array.from(pages).indexOf(page);
+      if (idx !== -1) goToPage(idx);
     }
   });
 });

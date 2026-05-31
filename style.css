@@ -22,8 +22,7 @@
 
 html {
   font-size: 16px;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+  overflow: hidden;
   scrollbar-width: none;
 }
 html::-webkit-scrollbar { display: none; }
@@ -37,16 +36,23 @@ body {
 }
 
 /* ===== BOOK / PAGE-TURN SCROLL ===== */
+body {
+  overflow: hidden;
+  height: 100vh;
+}
 #book {
-  /* no special scroll needed — html handles it */
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .page {
   height: 100vh;
-  scroll-snap-align: start;
   overflow: hidden;
   position: relative;
   contain: layout style;
+  flex-shrink: 0;
 }
 
 /* Page curl shadow at top edge */

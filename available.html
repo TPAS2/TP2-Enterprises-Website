@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Vehicles — TP2 Enterprises</title>
+  <link rel="icon" type="image/png" href="Zoomed.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --brand: #e85d04;
+      --brand-light: #ff7d3b;
+      --dark: #0a0a0f;
+      --dark-2: #111118;
+      --dark-3: #1a1a24;
+      --border: rgba(255,255,255,0.08);
+      --text: #e8e8f0;
+      --text-muted: #8888a8;
+      --white: #ffffff;
+      --radius: 14px;
+    }
+    html, body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+    /* Header */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(16px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .top-logo img { height: 44px; width: auto; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--brand-light), var(--brand));
+      color: #fff; font-weight: 700; font-size: 0.9rem;
+      padding: 10px 22px; border-radius: 100px; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,93,4,0.4); }
+
+    /* Hero */
+    .page-hero {
+      text-align: center;
+      padding: 56px 24px 40px;
+    }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.18em; color: #22c55e;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
+    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; color: #fff; margin-bottom: 12px; }
+    .page-title span { color: var(--brand-light); }
+    .page-sub { font-size: 1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+
+    /* Grid */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+    }
+    .car-card {
+      background: var(--dark-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: block;
+    }
+    .car-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); border-color: rgba(232,93,4,0.3); }
+    .car-img {
+      width: 100%; height: 200px;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      color: rgba(255,255,255,0.08);
+    }
+    .car-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .car-avail-badge {
+      position: absolute; top: 12px; left: 12px;
+      background: #22c55e; color: #fff;
+      font-size: 0.72rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+    }
+    .car-body { padding: 18px 16px; }
+    .car-name { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .car-meta { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+    .car-meta span { margin-right: 8px; }
+    .car-price { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--brand-light); }
+    .inquire-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px;
+      font-size: 0.82rem; font-weight: 600; color: var(--brand-light);
+    }
+
+    @media (max-width: 900px) { .cars-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .cars-grid { grid-template-columns: 1fr; padding: 0 20px 40px; } .top-bar { padding: 16px 20px; } }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="index.html" class="top-logo"><img src="Zoomed.png" alt="TP2 Enterprises" /></a>
+    <a href="index.html" class="back-btn">‹ Back to Home</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="status-badge"><span class="status-dot"></span> Available Now</div>
+    <h1 class="page-title">Available <span>Vehicles</span></h1>
+    <p class="page-sub">Browse our available vehicles ready for purchase.</p>
+  </div>
+
+  <div class="cars-grid">
+
+    <a href="index.html#contact" class="car-card">
+      <div class="car-img">
+        <span class="car-avail-badge">Available</span>
+        🚙
+      </div>
+      <div class="car-body">
+        <div class="car-name">Land Rover Defender P110</div>
+        <div class="car-meta"><span>2019</span> · <span>75,000 km</span></div>
+        <div class="car-price">€60,000</div>
+        <div class="inquire-link">Inquire Now ›</div>
+      </div>
+    </a>
+
+    <a href="index.html#contact" class="car-card">
+      <div class="car-img">
+        <span class="car-avail-badge">Available</span>
+        🚗
+      </div>
+      <div class="car-body">
+        <div class="car-name">Toyota Yaris Hybrid X</div>
+        <div class="car-meta"><span>2022</span> · <span>80,000 km</span></div>
+        <div class="car-price">€12,500</div>
+        <div class="inquire-link">Inquire Now ›</div>
+      </div>
+    </a>
+
+    <a href="index.html#contact" class="car-card">
+      <div class="car-img">
+        <span class="car-avail-badge">Available</span>
+        🚗
+      </div>
+      <div class="car-body">
+        <div class="car-name">Mazda 2</div>
+        <div class="car-meta"><span>2022</span> · <span>91,000 km</span></div>
+        <div class="car-price">€9,500</div>
+        <div class="inquire-link">Inquire Now ›</div>
+      </div>
+    </a>
+
+  </div>
+
+</body>
+</html>
