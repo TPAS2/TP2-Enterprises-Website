@@ -681,7 +681,7 @@ input, select, textarea { font-family: inherit; }
 .service-link:hover { text-decoration: underline; }
 
 /* ===== INVENTORY ===== */
-.inventory { background: var(--dark); }
+.inventory {}
 
 .inv-panels {
   display: grid;
@@ -999,7 +999,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .cta-strip p { color: var(--text-muted); font-size: 1rem; }
 
 /* ===== CONTACT ===== */
-.contact { background: var(--dark); }
+.contact {}
 .contact-inner {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
