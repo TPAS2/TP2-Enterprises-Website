@@ -17,6 +17,16 @@ if (iisEl) {
   let scrolling = false;
   let scrollTimer;
 
+  // Only show iis when home page is visible
+  const homePage = document.getElementById('home');
+  const iisObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      iisEl.style.opacity = e.isIntersecting ? '1' : '0';
+      iisEl.style.pointerEvents = e.isIntersecting ? 'auto' : 'none';
+    });
+  }, { threshold: 0.5 });
+  iisObserver.observe(homePage);
+
   window.addEventListener('scroll', () => {
     scrolling = true;
     clearTimeout(scrollTimer);
