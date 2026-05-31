@@ -283,7 +283,7 @@ input, select, textarea { font-family: inherit; }
   font-family: 'Syne', sans-serif;
   font-size: clamp(1.3rem, 2.5vw, 1.9rem);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.25;
   color: var(--white);
   margin-bottom: 6px;
 }
