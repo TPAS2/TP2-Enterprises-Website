@@ -620,7 +620,7 @@ input, select, textarea { font-family: inherit; }
 }
 
 /* ===== SERVICES ===== */
-.services { background: var(--dark-2); }
+.services {}
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -879,7 +879,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .inventory-cta p { color: var(--text-muted); margin-bottom: 8px; font-size: 0.8rem; }
 
 /* ===== ABOUT ===== */
-.about { background: var(--dark-2); }
+.about {}
 .about-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -923,7 +923,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .about-list svg { width: 18px; height: 18px; color: var(--brand-light); flex-shrink: 0; }
 
 /* ===== STATS ===== */
-.stats { background: var(--dark); padding: 40px 0 32px; min-height: unset; }
+.stats { padding: 40px 0 32px; min-height: unset; }
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -949,7 +949,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .stat-label { margin-top: 8px; font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
 
 /* ===== TESTIMONIALS ===== */
-.testimonials { background: var(--dark-2); padding: 32px 0 48px; min-height: unset; }
+.testimonials { padding: 32px 0 48px; min-height: unset; }
 .testi-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1074,7 +1074,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 .form-success.show { display: flex; }
 
 /* ===== FOOTER ===== */
-.footer { background: var(--dark-2); border-top: 1px solid var(--border); padding: 64px 0 0; }
+.footer { border-top: 1px solid var(--border); padding: 64px 0 0; }
 .footer-inner {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
