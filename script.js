@@ -235,8 +235,8 @@ if (rainCanvas) {
   const NUM = 40;
 
   function initCanvas() {
-    rainCanvas.width = rainCanvas.offsetWidth;
-    rainCanvas.height = rainCanvas.offsetHeight;
+    rainCanvas.width = window.innerWidth;
+    rainCanvas.height = window.innerHeight;
   }
   initCanvas();
   window.addEventListener('resize', initCanvas);
