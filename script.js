@@ -247,7 +247,7 @@ if (rainCanvas) {
       y: Math.random() * rainCanvas.height,
       len: Math.random() * 80 + 40,
       speed: Math.random() * 1.2 + 0.4,
-      opacity: Math.random() * 0.12 + 0.03,
+      opacity: Math.random() * 0.18 + 0.07,
     });
   }
 

@@ -51,7 +51,7 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  contain: layout style;
+  contain: style;
   flex-shrink: 0;
 }
 

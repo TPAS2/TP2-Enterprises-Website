@@ -191,7 +191,7 @@
     function initCanvas() { rainCanvas.width = window.innerWidth; rainCanvas.height = window.innerHeight; }
     initCanvas();
     window.addEventListener("resize", initCanvas);
-    for (let i = 0; i < NUM; i++) drops.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, len: Math.random() * 80 + 40, speed: Math.random() * 1.2 + 0.4, opacity: Math.random() * 0.12 + 0.03 });
+    for (let i = 0; i < NUM; i++) drops.push({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, len: Math.random() * 80 + 40, speed: Math.random() * 1.2 + 0.4, opacity: Math.random() * 0.18 + 0.07 });
     function drawRain() {
       ctx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
       for (const d of drops) {
