@@ -226,3 +226,51 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// ===== RAIN LINES (home page) =====
+const rainCanvas = document.getElementById('rainCanvas');
+if (rainCanvas) {
+  const ctx = rainCanvas.getContext('2d');
+  const drops = [];
+  const NUM = 40;
+
+  function initCanvas() {
+    rainCanvas.width = rainCanvas.offsetWidth;
+    rainCanvas.height = rainCanvas.offsetHeight;
+  }
+  initCanvas();
+  window.addEventListener('resize', initCanvas);
+
+  for (let i = 0; i < NUM; i++) {
+    drops.push({
+      x: Math.random() * rainCanvas.width,
+      y: Math.random() * rainCanvas.height,
+      len: Math.random() * 80 + 40,
+      speed: Math.random() * 1.2 + 0.4,
+      opacity: Math.random() * 0.12 + 0.03,
+    });
+  }
+
+  function drawRain() {
+    ctx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+    for (const d of drops) {
+      const grad = ctx.createLinearGradient(d.x, d.y, d.x, d.y + d.len);
+      grad.addColorStop(0, `rgba(255,255,255,0)`);
+      grad.addColorStop(0.5, `rgba(255,255,255,${d.opacity})`);
+      grad.addColorStop(1, `rgba(255,255,255,0)`);
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x, d.y + d.len);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      d.y += d.speed;
+      if (d.y > rainCanvas.height) {
+        d.y = -d.len;
+        d.x = Math.random() * rainCanvas.width;
+      }
+    }
+    requestAnimationFrame(drawRain);
+  }
+  drawRain();
+}

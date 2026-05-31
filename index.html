@@ -14,7 +14,7 @@
 <body>
 
   <!-- Page indicator dots -->
-  <div class="page-indicator" id="pageIndicator"></div>
+  <div id="pageIndicator" style="display:none;"></div>
 
   <!-- NAV -->
   <header class="nav-wrapper" id="navbar">
@@ -43,6 +43,7 @@
       <div class="page-inner">
         <section class="hero">
           <div class="hero-bg">
+            <canvas id="rainCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
             <div class="hero-grid"></div>
             <div class="hero-glow glow-1"></div>
             <div class="hero-glow glow-2"></div>
