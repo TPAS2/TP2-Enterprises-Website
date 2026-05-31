@@ -12,39 +12,31 @@ if (iisEl) {
   const maxY = window.innerHeight - h - pad;
   let x = Math.random() * maxX;
   let y = Math.random() * maxY;
-  let vx = (Math.random() * 0.8 + 0.4) * (Math.random() > 0.5 ? 1 : -1);
-  let vy = (Math.random() * 0.8 + 0.4) * (Math.random() > 0.5 ? 1 : -1);
+  let vx = (Math.random() * 0.6 + 0.3) * (Math.random() > 0.5 ? 1 : -1);
+  let vy = (Math.random() * 0.6 + 0.3) * (Math.random() > 0.5 ? 1 : -1);
+  let scrolling = false;
+  let scrollTimer;
+
+  window.addEventListener('scroll', () => {
+    scrolling = true;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => { scrolling = false; }, 200);
+  }, { passive: true });
 
   function driftIis() {
-    x += vx; y += vy;
-    if (x <= pad)    { x = pad;    vx =  Math.abs(vx); }
-    if (x >= maxX)   { x = maxX;   vx = -Math.abs(vx); }
-    if (y <= pad)    { y = pad;    vy =  Math.abs(vy); }
-    if (y >= maxY)   { y = maxY;   vy = -Math.abs(vy); }
-    iisEl.style.transform = `translate(${x}px, ${y}px)`;
+    if (!scrolling) {
+      x += vx; y += vy;
+      if (x <= pad)  { x = pad;  vx =  Math.abs(vx); }
+      if (x >= maxX) { x = maxX; vx = -Math.abs(vx); }
+      if (y <= pad)  { y = pad;  vy =  Math.abs(vy); }
+      if (y >= maxY) { y = maxY; vy = -Math.abs(vy); }
+      iisEl.style.transform = `translate(${x}px, ${y}px)`;
+    }
     requestAnimationFrame(driftIis);
   }
   driftIis();
 }
 
-// ===== HERO PARTICLES =====
-const particleContainer = document.getElementById('heroParticles');
-if (particleContainer) {
-  for (let i = 0; i < 12; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      width: ${Math.random() * 3 + 1}px;
-      height: ${Math.random() * 3 + 1}px;
-      animation-duration: ${Math.random() * 10 + 8}s;
-      animation-delay: ${Math.random() * 10}s;
-      opacity: 0;
-      background: ${Math.random() > 0.5 ? '#ff7d3b' : '#ffe03b'};
-    `;
-    particleContainer.appendChild(p);
-  }
-}
 
 // ===== NAVBAR =====
 const navbar = document.getElementById('navbar');
@@ -94,20 +86,8 @@ const pageObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
       const index = Array.from(pages).indexOf(entry.target);
-
-      // animate the incoming page
-      entry.target.classList.remove('turning-in');
-      void entry.target.offsetWidth; // force reflow
-      entry.target.classList.add('turning-in');
-      entry.target.addEventListener('animationend', () => {
-        entry.target.classList.remove('turning-in');
-      }, { once: true });
-
       currentPage = index;
       updateDots(index);
-
-      // trigger stat counters when stats page appears
-      if (entry.target.id === 'page-4') triggerCounters();
     }
   });
 }, { threshold: 0.5 });

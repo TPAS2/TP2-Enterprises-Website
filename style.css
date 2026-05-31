@@ -370,34 +370,19 @@ input, select, textarea { font-family: inherit; }
 }
 .glow-1 {
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(232,93,4,0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(232,93,4,0.2) 0%, transparent 70%);
   top: -200px; right: -150px;
-  animation: glowPulse1 6s ease-in-out infinite;
 }
 .glow-2 {
   width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(255,125,59,0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,125,59,0.12) 0%, transparent 70%);
   bottom: -100px; left: -100px;
-  animation: glowPulse2 8s ease-in-out infinite;
 }
 .glow-3 {
   width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(245,196,0,0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(245,196,0,0.07) 0%, transparent 70%);
   top: 40%; left: 50%;
   transform: translate(-50%, -50%);
-  animation: glowPulse3 5s ease-in-out infinite;
-}
-@keyframes glowPulse1 {
-  0%, 100% { transform: scale(1) translate(0,0); opacity: 0.8; }
-  50%       { transform: scale(1.15) translate(-30px, 20px); opacity: 1; }
-}
-@keyframes glowPulse2 {
-  0%, 100% { transform: scale(1) translate(0,0); opacity: 0.6; }
-  50%       { transform: scale(1.2) translate(20px, -30px); opacity: 1; }
-}
-@keyframes glowPulse3 {
-  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.4; }
-  50%       { transform: translate(-50%,-50%) scale(1.5); opacity: 0.8; }
 }
 
 /* Floating particles */
@@ -465,14 +450,10 @@ input, select, textarea { font-family: inherit; }
   border-radius: 4px;
   opacity: 0.5;
 }
-.shape-1 { width: 12px; height: 12px; background: var(--brand-light); top: 20%; left: 15%; animation: shapeFloat 6s ease-in-out infinite; transform: rotate(45deg); }
-.shape-2 { width: 8px; height: 8px; background: #ffe03b; top: 30%; right: 12%; animation: shapeFloat 8s ease-in-out infinite 1s; border-radius: 50%; }
-.shape-3 { width: 16px; height: 16px; background: var(--brand); top: 70%; left: 10%; animation: shapeFloat 7s ease-in-out infinite 2s; transform: rotate(20deg); opacity: 0.3; }
-.shape-4 { width: 10px; height: 10px; background: var(--brand-light); bottom: 20%; right: 15%; animation: shapeFloat 5s ease-in-out infinite 0.5s; border-radius: 2px; transform: rotate(60deg); }
-@keyframes shapeFloat {
-  0%, 100% { transform: translateY(0) rotate(45deg); }
-  50%       { transform: translateY(-20px) rotate(90deg); }
-}
+.shape-1 { width: 8px; height: 8px; background: var(--brand-light); top: 20%; left: 15%; transform: rotate(45deg); opacity: 0.4; }
+.shape-2 { width: 6px; height: 6px; background: #ffe03b; top: 30%; right: 12%; border-radius: 50%; opacity: 0.3; }
+.shape-3 { display: none; }
+.shape-4 { display: none; }
 
 /* Eyebrow */
 .hero-eyebrow {
