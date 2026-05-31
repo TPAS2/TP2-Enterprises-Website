@@ -178,7 +178,7 @@ body {
 .footer-col a:hover { color: var(--brand-light); }
 .footer-bottom-bar {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 24px;
+  padding-top: 10px;
   border-top: 1px solid var(--border);
   font-size: 0.8rem; color: var(--text-muted);
 }
