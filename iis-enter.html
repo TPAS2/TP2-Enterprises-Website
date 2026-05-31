@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✦</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: #0d0008;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .glow {
+      position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none;
+    }
+    .glow-1 { width: 400px; height: 400px; background: rgba(255,80,150,0.12); top: -80px; left: -80px; }
+    .glow-2 { width: 300px; height: 300px; background: rgba(255,40,120,0.08); bottom: -60px; right: -60px; }
+
+    .card {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 48px 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,80,150,0.15);
+      border-radius: 20px;
+      width: 320px;
+      animation: fadeUp 0.6s cubic-bezier(0.4,0,0.2,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .lock { font-size: 2.5rem; margin-bottom: 16px; }
+    .card h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      color: #fff; margin-bottom: 6px;
+    }
+    .card p { font-size: 0.82rem; color: rgba(255,150,200,0.6); margin-bottom: 24px; }
+
+    input[type="password"] {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,80,150,0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 1.1rem;
+      color: #fff;
+      text-align: center;
+      letter-spacing: 0.3em;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 14px;
+    }
+    input[type="password"]:focus { border-color: rgba(255,80,150,0.6); }
+    input[type="password"].shake {
+      animation: shake 0.4s cubic-bezier(0.36,0.07,0.19,0.97);
+      border-color: #ef4444;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%      { transform: translateX(-8px); }
+      40%      { transform: translateX(8px); }
+      60%      { transform: translateX(-6px); }
+      80%      { transform: translateX(6px); }
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff80c0, #ff2d78);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(255,45,120,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,45,120,0.5); }
+
+    .error-msg {
+      margin-top: 12px;
+      font-size: 0.78rem;
+      color: #ef4444;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .error-msg.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="card">
+    <div class="lock">🔒</div>
+    <h1>Enter Password</h1>
+    <p>This page is private</p>
+    <input type="password" id="pwInput" placeholder="••••••••" maxlength="20" />
+    <button onclick="check()">Unlock</button>
+    <div class="error-msg" id="errMsg">Wrong password. Try again.</div>
+  </div>
+
+  <script>
+    const input = document.getElementById('pwInput');
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+
+    function check() {
+      if (input.value === '06022026') {
+        window.location.href = 'iis.html';
+      } else {
+        input.classList.remove('shake');
+        void input.offsetWidth;
+        input.classList.add('shake');
+        input.value = '';
+        document.getElementById('errMsg').classList.add('show');
+        setTimeout(() => input.classList.remove('shake'), 400);
+      }
+    }
+  </script>
+</body>
+</html>
