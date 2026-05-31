@@ -161,6 +161,16 @@ input, select, textarea { font-family: inherit; }
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(232,93,4,0.5);
 }
+.btn-yellow {
+  background: linear-gradient(135deg, #ffe03b, #f5c400);
+  color: #1a1000;
+  font-weight: 700;
+  box-shadow: 0 4px 24px rgba(245,196,0,0.35);
+}
+.btn-yellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(245,196,0,0.5);
+}
 .btn-ghost {
   border: 1.5px solid var(--border);
   color: var(--text);
