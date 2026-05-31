@@ -121,7 +121,7 @@
   <div class="page-hero">
     <div class="status-badge"><span class="status-dot"></span> Available Now</div>
     <h1 class="page-title">Available <span>Vehicles</span></h1>
-    <p class="page-sub">Browse our available vehicles ready for purchase.</p>
+    <p class="page-sub">Browse our available <span id="vehicleCount"></span> vehicles ready for purchase.</p>
   </div>
 
   <div class="cars-grid">
@@ -179,5 +179,8 @@
 
   </div>
 
+  <script>
+    document.getElementById('vehicleCount').textContent = document.querySelectorAll('.cars-grid .car-card').length;
+  </script>
 </body>
 </html>
