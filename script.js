@@ -1,5 +1,32 @@
 'use strict';
 
+// ===== FLOATING IIS =====
+const iisEl = document.getElementById('floatingIis');
+if (iisEl) {
+  const W = () => window.innerWidth - iisEl.offsetWidth - 10;
+  const H = () => window.innerHeight - iisEl.offsetHeight - 10;
+  let x = Math.random() * W();
+  let y = Math.random() * H();
+  let vx = (Math.random() * 1.2 + 0.4) * (Math.random() > 0.5 ? 1 : -1);
+  let vy = (Math.random() * 1.2 + 0.4) * (Math.random() > 0.5 ? 1 : -1);
+
+  iisEl.style.left = x + 'px';
+  iisEl.style.top  = y + 'px';
+
+  function driftIis() {
+    x += vx;
+    y += vy;
+    if (x <= 0)    { x = 0;    vx = Math.abs(vx); }
+    if (x >= W())  { x = W();  vx = -Math.abs(vx); }
+    if (y <= 0)    { y = 0;    vy = Math.abs(vy); }
+    if (y >= H())  { y = H();  vy = -Math.abs(vy); }
+    iisEl.style.left = x + 'px';
+    iisEl.style.top  = y + 'px';
+    requestAnimationFrame(driftIis);
+  }
+  driftIis();
+}
+
 // ===== HERO PARTICLES =====
 const particleContainer = document.getElementById('heroParticles');
 if (particleContainer) {
