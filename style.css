@@ -685,7 +685,7 @@ input, select, textarea { font-family: inherit; }
 
 .inv-panels {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 .inv-panel {
