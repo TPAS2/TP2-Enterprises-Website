@@ -307,7 +307,10 @@ input, select, textarea { font-family: inherit; }
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
 }
 .hero-badge {
   display: inline-flex;
@@ -340,13 +343,14 @@ input, select, textarea { font-family: inherit; }
   color: var(--text-muted);
   max-width: 560px;
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin: 0 auto 28px;
   animation: fadeUp 0.6s 0.2s ease both;
 }
 .hero-cta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 32px;
   animation: fadeUp 0.6s 0.3s ease both;
 }
@@ -814,6 +818,37 @@ input, select, textarea { font-family: inherit; }
 @media (max-width: 480px) {
   .hero-cta { flex-direction: column; }
   .btn { width: 100%; text-align: center; }
-  .stats-grid { grid-template-columns: 1fr 1fr; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+/* ===== TAXI PAGE ===== */
+.taxi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.taxi-feature {
+  background: var(--dark-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  transition: all var(--transition);
+}
+.taxi-feature:hover { border-color: rgba(232,93,4,0.3); transform: translateY(-4px); }
+.taxi-feature h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin: 12px 0 8px; }
+.taxi-feature p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+.taxi-reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+@media (max-width: 1024px) {
+  .taxi-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .taxi-grid { grid-template-columns: 1fr 1fr; }
+  .taxi-reviews { grid-template-columns: 1fr; }
+  .hero-title { white-space: normal; }
 }
