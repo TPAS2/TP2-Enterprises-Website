@@ -394,7 +394,13 @@ input, select, textarea { font-family: inherit; }
   padding: 100px 0 60px;
   text-align: center;
 }
-.hero-bg { position: absolute; inset: 0; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('IMG_3209.jpeg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+}
 .hero-bg::after {
   content: '';
   position: absolute;
