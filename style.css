@@ -1315,4 +1315,8 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   border-color: transparent;
   color: #fff;
 }
+.side-nav-taxi.active {
+  background: linear-gradient(135deg, #ffe03b, #f5c400);
+  color: #1a1000;
+}
 @media (max-width: 768px) { .side-nav { display: none; } }
