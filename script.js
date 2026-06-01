@@ -90,7 +90,7 @@ function updateDots(index) {
 function goToPage(index) {
   if (index < 0 || index >= pages.length) return;
   const now = Date.now();
-  if (now - lastScrollTime < 1100) return;
+  if (now - lastScrollTime < 950) return;
   lastScrollTime = now;
   isAnimating = true;
   currentPage = index;
@@ -107,7 +107,7 @@ function goToPage(index) {
 // Wheel handler — one tick = one page
 window.addEventListener('wheel', (e) => {
   e.preventDefault();
-  if (Math.abs(e.deltaY) < 50) return;
+  if (Math.abs(e.deltaY) < 5) return;
   if (e.deltaY > 0) goToPage(currentPage + 1);
   else if (e.deltaY < 0) goToPage(currentPage - 1);
 }, { passive: false });
