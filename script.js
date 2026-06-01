@@ -131,6 +131,9 @@ function revealCardsInPage(pageEl) {
     const delay = card.dataset.delay || (i * 80);
     setTimeout(() => card.classList.add('visible'), parseInt(delay));
   });
+  pageEl.querySelectorAll('.inv-panel:not(.visible)').forEach((panel) => {
+    setTimeout(() => panel.classList.add('visible'), 100);
+  });
 }
 
 // ===== STAT COUNTERS =====
