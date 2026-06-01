@@ -331,9 +331,6 @@ input, select, textarea { font-family: inherit; }
   padding: 16px 0;
   transition: all var(--transition);
   border-bottom: 2px solid var(--brand);
-  background: rgba(8,8,8,0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 .nav-wrapper.scrolled {
   background: rgba(8,8,8,0.95);
