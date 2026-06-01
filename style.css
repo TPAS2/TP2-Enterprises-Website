@@ -330,13 +330,13 @@ input, select, textarea { font-family: inherit; }
   z-index: 100;
   padding: 16px 0;
   transition: all var(--transition);
-  border-bottom: 1px solid rgba(232,93,4,0.4);
+  border-bottom: none;
 }
 .nav-wrapper.scrolled {
   background: rgba(8,8,8,0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 2px solid var(--brand);
+  border-bottom: none;
   padding: 12px 0;
 }
 .nav {
