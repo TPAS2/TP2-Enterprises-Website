@@ -82,6 +82,9 @@ function updateDots(index) {
   document.querySelectorAll('.page-dot').forEach((dot, i) => {
     dot.classList.toggle('active', i === index);
   });
+  document.querySelectorAll('.side-nav-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === index);
+  });
 }
 
 function goToPage(index) {
