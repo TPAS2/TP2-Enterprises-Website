@@ -198,22 +198,6 @@ if (sliderTrack) {
   });
 }
 
-// ===== CONTACT FORM =====
-const form = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  setTimeout(() => {
-    form.reset();
-    btn.textContent = 'Send Message';
-    btn.disabled = false;
-    formSuccess.classList.add('show');
-    setTimeout(() => formSuccess.classList.remove('show'), 5000);
-  }, 1200);
-});
 
 // ===== SMOOTH ANCHOR SCROLL (nav links) =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
