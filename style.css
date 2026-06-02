@@ -334,7 +334,10 @@ input, select, textarea { font-family: inherit; }
   z-index: 100;
   padding: 16px 0;
   transition: all var(--transition);
-  border-bottom: none;
+  border-bottom: 1px solid rgba(232,93,4,0.3);
+  background: rgba(30,20,10,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .nav-wrapper.scrolled {
   background: rgba(8,8,8,0.95);
