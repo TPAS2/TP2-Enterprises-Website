@@ -275,6 +275,7 @@
   <canvas id="rainCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
   <script>
     const rainCanvas = document.getElementById("rainCanvas");
+    if (window.innerWidth <= 768) { rainCanvas.style.display = "none"; } else {
     const ctx = rainCanvas.getContext("2d");
     const drops = [];
     function initCanvas() { rainCanvas.width = window.innerWidth; rainCanvas.height = window.innerHeight; }
@@ -296,6 +297,7 @@
       requestAnimationFrame(drawRain);
     }
     drawRain();
+    }
   </script>
 </body>
 </html>
