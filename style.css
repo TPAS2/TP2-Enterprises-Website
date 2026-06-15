@@ -162,7 +162,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 /* ===== FOOTER PAGE ===== */
@@ -301,7 +301,7 @@ input, select, textarea { font-family: inherit; }
 .btn-full { width: 100%; }
 
 /* ===== SECTION HEADER ===== */
-.section-header { text-align: center; margin-bottom: 14px; }
+.section-header { text-align: center; margin-bottom: 14px; overflow: visible; }
 .section-tag {
   display: inline-block;
   font-size: 0.7rem;
@@ -1259,12 +1259,14 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 
 /* ===== TAXI PAGE ===== */
 .taxi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin-bottom: 14px;
 }
-.taxi-feature-center { grid-column: 1 / -1; max-width: 33%; margin: 0 auto; }
+.taxi-feature { flex: 1 1 calc(33% - 12px); min-width: 180px; max-width: calc(33% - 12px); }
+.taxi-feature-center { flex: 0 1 calc(33% - 12px); }
 .taxi-feature {
   background: var(--dark-3);
   border: 1px solid var(--border);
