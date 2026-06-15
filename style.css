@@ -1264,6 +1264,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   gap: 12px;
   margin-bottom: 14px;
 }
+.taxi-feature-center { grid-column: 1 / -1; max-width: 33%; margin: 0 auto; }
 .taxi-feature {
   background: var(--dark-3);
   border: 1px solid var(--border);
@@ -1364,4 +1365,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 
   /* Reduce transition costs */
   * { transition-duration: 0.15s !important; }
+
+  /* Hide 3rd+ inventory items on mobile */
+  .inv-item-3rd { display: none !important; }
 }
