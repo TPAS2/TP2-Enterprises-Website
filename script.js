@@ -104,24 +104,16 @@ function goToPage(index) {
   }, 800);
 }
 
-// Returns the scrollable inventory list under the pointer, if it can still scroll
-// in the given direction — so the wheel/touch goes to it instead of snapping pages.
-function getScrollableList(target, deltaY) {
-  const list = target.closest && target.closest('.inv-list');
-  if (!list) return null;
-  const canScroll = list.scrollHeight > list.clientHeight + 1;
-  if (!canScroll) return null;
-  const atTop = list.scrollTop <= 0;
-  const atBottom = list.scrollTop + list.clientHeight >= list.scrollHeight - 1;
-  if (deltaY > 0 && atBottom) return null;   // let page snap take over at the end
-  if (deltaY < 0 && atTop) return null;
-  return list;
+// Returns the inventory scroll box under the pointer/touch, if any.
+// While inside a box, scrolling only moves the box — never snaps to the next page.
+function getScrollableList(target) {
+  return (target.closest && target.closest('.inv-list')) || null;
 }
 
 // Wheel handler — one tick = one page
 window.addEventListener('wheel', (e) => {
   // Allow normal scrolling inside the inventory scroll boxes
-  if (getScrollableList(e.target, e.deltaY)) return;
+  if (getScrollableList(e.target)) return;
   e.preventDefault();
   if (Math.abs(e.deltaY) < 5) return;
   if (e.deltaY > 0) goToPage(currentPage + 1);
@@ -136,8 +128,8 @@ window.addEventListener('touchstart', (e) => {
 window.addEventListener('touchend', (e) => {
   if (isAnimating) return;
   const diff = touchStartY - e.changedTouches[0].clientY;
-  // Don't snap pages if the swipe was inside a scrollable inventory list
-  if (getScrollableList(e.target, diff)) return;
+  // Don't snap pages if the swipe was inside a scroll box
+  if (getScrollableList(e.target)) return;
   if (Math.abs(diff) > 40) {
     if (diff > 0) goToPage(currentPage + 1);
     else goToPage(currentPage - 1);
