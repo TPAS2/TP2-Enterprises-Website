@@ -110,10 +110,25 @@ function getScrollableList(target) {
   return (target.closest && target.closest('.inv-list')) || null;
 }
 
+// True when the current page's content is taller than the screen and can still
+// scroll in the swipe direction (used on mobile for the contact page). dirDown =
+// the content is moving up / revealing lower content.
+function pageInnerCanScroll(target, dirDown) {
+  const pi = target.closest && target.closest('.page-inner');
+  if (!pi) return false;
+  if (pi.scrollHeight <= pi.clientHeight + 1) return false;
+  const atTop = pi.scrollTop <= 0;
+  const atBottom = pi.scrollTop + pi.clientHeight >= pi.scrollHeight - 1;
+  if (dirDown && atBottom) return false;
+  if (!dirDown && atTop) return false;
+  return true;
+}
+
 // Wheel handler — one tick = one page
 window.addEventListener('wheel', (e) => {
-  // Allow normal scrolling inside the inventory scroll boxes
+  // Allow normal scrolling inside the inventory scroll boxes or a scrollable page
   if (getScrollableList(e.target)) return;
+  if (pageInnerCanScroll(e.target, e.deltaY > 0)) return;
   e.preventDefault();
   if (Math.abs(e.deltaY) < 5) return;
   if (e.deltaY > 0) goToPage(currentPage + 1);
@@ -128,8 +143,9 @@ window.addEventListener('touchstart', (e) => {
 window.addEventListener('touchend', (e) => {
   if (isAnimating) return;
   const diff = touchStartY - e.changedTouches[0].clientY;
-  // Don't snap pages if the swipe was inside a scroll box
+  // Don't snap pages if the swipe was inside a scroll box or a scrollable page
   if (getScrollableList(e.target)) return;
+  if (pageInnerCanScroll(e.target, diff > 0)) return;
   if (Math.abs(diff) > 40) {
     if (diff > 0) goToPage(currentPage + 1);
     else goToPage(currentPage - 1);
