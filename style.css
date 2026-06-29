@@ -800,7 +800,18 @@ input, select, textarea { font-family: inherit; }
 .inv-panel-count { font-size: 0.95rem; font-weight: 600; color: var(--brand-light); }
 .inv-count-red   { color: #f87171; }
 
-.inv-list { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.inv-list {
+  display: flex; flex-direction: column; gap: 2px; flex: 1;
+  max-height: 232px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand) transparent;
+}
+.inv-list::-webkit-scrollbar { width: 6px; }
+.inv-list::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); border-radius: 3px; }
+.inv-list::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 3px; }
+.inv-list::-webkit-scrollbar-thumb:hover { background: var(--brand-light); }
 .inv-item {
   display: flex;
   align-items: center;
@@ -1397,6 +1408,12 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   /* Reduce transition costs */
   * { transition-duration: 0.15s !important; }
 
-  /* Hide 3rd+ inventory items on mobile */
-  .inv-item-3rd { display: none !important; }
+  /* Inventory items all visible — scroll box handles overflow */
+  .inv-item-3rd { display: flex !important; }
+  .inv-list { max-height: 168px; }
+
+  /* Contact box fits narrow screens */
+  .contact-box-inner { padding: 22px 24px; gap: 32px !important; }
+  /* Lighten the spinning border anim on mobile GPUs */
+  .contact-box::before { animation-duration: 5s; }
 }
