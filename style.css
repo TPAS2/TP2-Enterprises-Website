@@ -1086,6 +1086,35 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 
 /* ===== CONTACT ===== */
 .contact {}
+
+/* Animated circling line around the contact info box */
+.contact-box {
+  position: relative;
+  display: inline-block;
+  padding: 2px;            /* line thickness */
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  isolation: isolate;
+}
+.contact-box::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 160%; height: 160%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 300deg, var(--brand-light) 340deg, #fff 350deg, var(--brand-light) 360deg);
+  animation: contactSpin 3.5s linear infinite;
+  z-index: -1;
+}
+.contact-box-inner {
+  background: var(--dark-2);
+  border-radius: 12px;
+  padding: 28px 44px;
+}
+@keyframes contactSpin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
 .contact-inner {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
