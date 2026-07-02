@@ -1412,9 +1412,9 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
   /* Reduce transition costs */
   * { transition-duration: 0.15s !important; }
 
-  /* Inventory items all visible — scroll box handles overflow */
+  /* One car preview per panel; scroll box reveals the rest */
   .inv-item-3rd { display: flex !important; }
-  .inv-list { max-height: 150px; }
+  .inv-list { max-height: 66px; }
 
   /* Let the cars page scroll if the two panels don't fit */
   #cars .inventory.section {
@@ -1427,8 +1427,14 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 
   /* Contact box fits narrow screens */
   .contact-box { display: block; width: 100%; }
-  .contact-box-inner { padding: 22px 18px; gap: 28px !important; }
-  .contact-box-inner span { overflow-wrap: anywhere; }
+  .contact-box-inner {
+    position: relative;
+    z-index: 1;
+    padding: 22px 18px;
+    gap: 24px !important;
+  }
+  .contact-box-inner strong { color: #ffffff !important; }
+  .contact-box-inner span { color: #d8d8e4 !important; overflow-wrap: anywhere; word-break: break-word; }
   /* Lighten the spinning border anim on mobile GPUs */
   .contact-box::before { animation-duration: 5s; }
 
