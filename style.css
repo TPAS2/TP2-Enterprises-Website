@@ -1414,7 +1414,16 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
 
   /* Inventory items all visible — scroll box handles overflow */
   .inv-item-3rd { display: flex !important; }
-  .inv-list { max-height: 168px; }
+  .inv-list { max-height: 150px; }
+
+  /* Let the cars page scroll if the two panels don't fit */
+  #cars .inventory.section {
+    height: auto;
+    min-height: 100vh;
+    justify-content: flex-start;
+    padding-top: calc(var(--nav-h) + 32px);
+    padding-bottom: 32px;
+  }
 
   /* Contact box fits narrow screens */
   .contact-box { display: block; width: 100%; }
@@ -1428,6 +1437,7 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
     height: auto;
     min-height: 100vh;
     justify-content: flex-start;
+    padding-top: calc(var(--nav-h) + 48px);
   }
   #contact .page-inner {
     -webkit-overflow-scrolling: touch;
