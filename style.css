@@ -18,6 +18,34 @@
   --shadow: 0 4px 32px rgba(0,0,0,0.4);
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
   --nav-h: 64px;
+
+  /* Semantic aliases (map brand → roles) */
+  --color-accent: var(--brand);
+  --color-accent-hover: var(--brand-light);
+  --color-surface: var(--dark-3);
+  --color-surface-2: var(--dark-4);
+  --color-on-surface: var(--text);
+  --color-on-surface-muted: var(--text-muted);
+
+  /* 8pt spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Type scale (1.25 ratio, 16px base) */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
 }
 
 html {
@@ -1449,4 +1477,40 @@ a.inv-item:hover { background: rgba(255,255,255,0.04); }
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
+}
+
+/* ===== UI/UX POLISH & ACCESSIBILITY ===== */
+
+/* Tabular figures so prices/stats align and don't shift width */
+.inv-price, .car-price, .price-cell, .stat-value, .car-meta {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Keyboard focus visibility (doesn't affect mouse users) */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.side-nav-btn:focus-visible,
+.inv-item:focus-visible,
+.page-dot:focus-visible {
+  outline: 2px solid var(--brand-light);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect users who prefer reduced motion — kill the heavy ambient animation */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #rainCanvas { display: none !important; }
+  .word-reveal { opacity: 1 !important; transform: none !important; }
+  .contact-box::before,
+  .hero-title::after,
+  .inv-dot-green,
+  .inv-dot-red { animation: none !important; }
 }
