@@ -138,7 +138,7 @@
       <div class="car-body">
         <div class="car-name">Land Rover Defender P110</div>
         <div class="car-meta"><span>2019</span> · <span>75,000 km</span></div>
-        <div class="car-price">€60,000</div>
+        <div class="car-price">€55,000</div>
         <div class="inquire-link">Inquire Now ›</div>
       </div>
     </a>
@@ -168,10 +168,36 @@
       </div>
     </a>
 
+    <a href="index.html#contact" class="car-card coming-soon">
+      <div class="car-img">
+        <span class="car-avail-badge" style="background:#f5a623;color:#1a1000;">Coming Soon</span>
+        <div style="color:rgba(255,255,255,0.3);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;">Photo Coming Soon</div>
+      </div>
+      <div class="car-body">
+        <div class="car-name">Toyota Yaris Hybrid X</div>
+        <div class="car-meta"><span>2022</span> · <span>90,000 km</span></div>
+        <div class="car-price" style="color:#f5a623;font-size:1.05rem;">Coming Soon</div>
+        <div class="inquire-link">Enquire ›</div>
+      </div>
+    </a>
+
+    <a href="index.html#contact" class="car-card coming-soon">
+      <div class="car-img">
+        <span class="car-avail-badge" style="background:#f5a623;color:#1a1000;">Coming Soon</span>
+        <div style="color:rgba(255,255,255,0.3);font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;">Photo Coming Soon</div>
+      </div>
+      <div class="car-body">
+        <div class="car-name">Toyota Yaris Hybrid X</div>
+        <div class="car-meta"><span>2022</span> · <span>90,000 km</span></div>
+        <div class="car-price" style="color:#f5a623;font-size:1.05rem;">Coming Soon</div>
+        <div class="inquire-link">Enquire ›</div>
+      </div>
+    </a>
+
   </div>
 
   <script>
-    document.getElementById('vehicleCount').textContent = document.querySelectorAll('.cars-grid .car-card').length;
+    document.getElementById('vehicleCount').textContent = document.querySelectorAll('.cars-grid .car-card:not(.coming-soon)').length;
   </script>
   </div><!-- /page-wrapper -->
   <canvas id="rainCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
